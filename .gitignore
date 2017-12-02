@@ -1,0 +1,4 @@
+/node_modules
+/tscompiled
+/build/stack-overflow.js
+package-lock.json

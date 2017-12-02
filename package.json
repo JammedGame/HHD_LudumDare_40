@@ -1,0 +1,37 @@
+{
+  "name": "stack-overflow",
+  "version": "0.0.1",
+  "description": "LDJAM40",
+  "main": "build/public/stack-overflow.js",
+  "scripts": {
+    "start": "tsc && webpack-dev-server --hot",
+    "build": "tsc && webpack --watch",
+    "prod": "tsc && webpack -p",
+    "test": "cd tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShadySolutions/HHD_LudumDare_40.git"
+  },
+  "keywords": [
+    "ludum",
+    "dare",
+    "stack",
+    "overflow"
+  ],
+  "author": "HHD",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShadySolutions/HHD_LudumDare_40/issues"
+  },
+  "homepage": "https://github.com/ShadySolutions/HHD_LudumDare_40#readme",
+  "devDependencies": {
+    "typescript": "^2.4.2",
+    "webpack": "^3.5.3",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "three": "^0.88.0",
+    "ts-loader": "^2.3.2"
+  }
+}
