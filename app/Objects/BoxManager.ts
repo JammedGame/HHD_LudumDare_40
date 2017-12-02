@@ -3,7 +3,7 @@ export  { BoxManager };
 import * as Three from 'Three';
 
 import { Box } from "./Box";
-import { CollisionManager } from "./CollisionManager";
+import { CollisionManager } from "./../CollisionManager";
 
 class BoxManager
 {

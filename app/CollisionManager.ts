@@ -2,7 +2,7 @@ export  { CollisionManager };
 
 import * as Matter from 'matter-js';
 
-import { Ground } from "./Ground";
+import { Ground } from "./Objects/Ground";
 
 class CollisionManager
 {
