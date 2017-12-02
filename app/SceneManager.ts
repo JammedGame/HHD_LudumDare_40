@@ -3,6 +3,8 @@ export  { SceneManager };
 import * as Three from 'Three';
 
 import { Box } from "./Box";
+import { BoxManager } from "./BoxManager";
+import { CollisionManager } from "./CollisionManager";
 import { SceneEnvironment } from "./SceneEnvironment";
 
 class SceneManager
@@ -12,8 +14,10 @@ class SceneManager
     private _Scene:Three.Scene;
     private _Camera:Three.Camera;
     private _Renderer:Three.WebGLRenderer;
-    private _Light:Three.Light;
     private _AmbientLight:Three.AmbientLight;
+
+    private _BoxManager:BoxManager;
+    private _CollisionManager:CollisionManager;
     public constructor(Resolution:any)
     {
         this._Target = document.getElementById("canvas") as HTMLCanvasElement;
@@ -31,9 +35,10 @@ class SceneManager
         this._Renderer.setPixelRatio( window.devicePixelRatio );
         this.Resize();
         let Env = new SceneEnvironment(this._Scene);
-        let Boxy = new Box(this._Scene, {X:0, Y:200, Z:0});
-        let Boxy2 = new Box(this._Scene, {X:20, Y:300, Z:0});
-        let BoxyUp = new Box(this._Scene, {X:0, Y:800, Z:0});
+        this._CollisionManager = new CollisionManager();
+        this._BoxManager = new BoxManager(this._Scene, this._CollisionManager);
+        this._CollisionManager.Run();
+        this._BoxManager.Update();
         window.requestAnimationFrame(this.Draw.bind(this));
     }
     public Resize()
@@ -44,6 +49,8 @@ class SceneManager
     }
     private Draw()
     {
+        this._CollisionManager.Run();
+        this._BoxManager.Update();
         this._Renderer.render( this._Scene, this._Camera );
         window.requestAnimationFrame(this.Draw.bind(this));
     }
@@ -51,11 +58,11 @@ class SceneManager
     {
         if(event.keyCode == 37)
         {
-            this._Scene.translateX(-10);
+            this._Scene.translateX(10);
         }
         else if(event.keyCode == 39)
         {
-            this._Scene.translateX(10);
+            this._Scene.translateX(-10);
         }
     }
 }

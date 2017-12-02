@@ -31,6 +31,8 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "@types/matter-js": "^0.9.33",
+    "matter-js": "^0.14.0",
     "three": "^0.88.0",
     "ts-loader": "^2.3.2"
   }
