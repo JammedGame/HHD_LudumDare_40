@@ -68,7 +68,8 @@ class BoxManager
         this.UpdateCarriedBoxes();
         if(Speed == 0) this._Velocity = 0;
         else this._Velocity += Speed;
-        if(this._Velocity > 3) this._Velocity = 3;
+        if(this._Velocity > 5) this._Velocity = 5;
+        if(this._Velocity < -5) this._Velocity = -5;
         this._BaseBox.SetVelocity(this._Velocity);
     }
     private UpdateCarriedBoxes()

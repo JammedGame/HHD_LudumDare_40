@@ -34,6 +34,7 @@
     "@types/matter-js": "^0.9.33",
     "matter-js": "^0.14.0",
     "three": "^0.88.0",
+    "three-obj-loader": "^1.1.3",
     "ts-loader": "^2.3.2"
   }
 }

@@ -29,6 +29,7 @@ class GameObject
             this._ThreeObject.position.y = Position.Y
             this._ThreeObject.position.z = Position.Z
         }
+        console.log(this._ThreeObject);
         Scene.add(this._ThreeObject);
         if(PhysicsEngine != null)
         {
@@ -64,7 +65,12 @@ class GameObject
         if(this._MatterObject != null && this._Engine != null)
         {
             Matter.World.remove(this._Engine.world, this._MatterObject);
-            this._MatterObject = Matter.Bodies.rectangle(this._ThreeObject.position.x, -this._ThreeObject.position.y, 100, 100, {friction:1, frictionStatic:1});
+            this._MatterObject = Matter.Bodies.rectangle(this._ThreeObject.position.x, -this._ThreeObject.position.y, 100, 100,
+            {
+                mass:1,
+                friction:1,
+                frictionStatic:1
+            });
             Matter.World.add(this._Engine.world, [this._MatterObject]);
         }
     }

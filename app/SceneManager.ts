@@ -7,7 +7,8 @@ import { Keyboard } from "./Keyboard";
 import { Renderer } from "./Renderer"; 
 import { BoxManager } from "./Objects/BoxManager";
 import { CollisionManager } from "./CollisionManager";
-import { SceneEnvironment } from "./SceneEnvironment";
+import { Environment } from "./SceneEnvironment";
+import { Character } from "./Character";
 
 class SceneManager
 {
@@ -19,8 +20,9 @@ class SceneManager
     {
         this._Keyboard = new Keyboard();
         this._Renderer = new Renderer({X:1920, Y:1080});
-        let Env = new SceneEnvironment(this._Renderer.Scene);
+        let Env = new Environment(this._Renderer.Scene);
         this._CollisionManager = new CollisionManager();
+        let Char = new Character(this._Renderer.Scene);
         this._BoxManager = new BoxManager(this._Renderer.Scene, this._CollisionManager);
         this._Renderer.OnRender.push(this.Update.bind(this));
         this._Renderer.OnRender.push(this._BoxManager.Prepare.bind(this._BoxManager));
