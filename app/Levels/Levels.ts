@@ -5,7 +5,7 @@ let Levels =
     // Level 1
     {
         Index: 0,
-        Name: "Level 1",
+        Passes: 2,
         BronzeScore: 1000,
         SilverScore: 1500,
         GoldScore: 2000,
