@@ -9,10 +9,10 @@ class Environment
     {
         this._Scene = Scene;
         if(Environment.Textures == null) Environment.LoadTextures();
-        let Floor = new Three.Mesh( new Three.CubeGeometry(7000,10,1000), new Three.MeshPhongMaterial( { color: 0xFF8C00, map:Environment.Textures[1] } ) );
+        let Floor = new Three.Mesh( new Three.CubeGeometry(7000,10,1000), new Three.MeshPhongMaterial( { color: 0xFF8C00, map:Environment.Textures[0] } ) );
         Floor.position.x = 2000;
         this._Scene.add(Floor);
-        let Wall = new Three.Mesh( new Three.CubeGeometry(7000,1200,10), new Three.MeshPhongMaterial( { color: 0xFFFFFF, map:Environment.Textures[0] } ) );
+        let Wall = new Three.Mesh( new Three.CubeGeometry(7000,1800,10), new Three.MeshPhongMaterial( { color: 0xFFFFFF, map:Environment.Textures[0] } ) );
         Wall.position.x = 2000
         Wall.position.y = 600;
         Wall.position.z = -200;
@@ -39,7 +39,7 @@ class Environment
     public static Textures:any[];
     public static LoadTextures()
     {
-        let TextureUrls = ["build/resources/wall.png", "build/resources/floor1.jpg", "build/resources/floor2.jpg"];
+        let TextureUrls = ["build/resources/wall.png"];
         let TextureLoader = new Three.TextureLoader();
         let Textures : Three.Texture[] = [];
         for(let j = 0; j < TextureUrls.length; j++)

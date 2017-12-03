@@ -29,7 +29,6 @@ class GameObject
             this._ThreeObject.position.y = Position.Y
             this._ThreeObject.position.z = Position.Z
         }
-        console.log(this._ThreeObject);
         Scene.add(this._ThreeObject);
         if(PhysicsEngine != null)
         {
