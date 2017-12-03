@@ -75,7 +75,7 @@ class GameObject
     public SetVelocity(Velocity:number) : void
     {
         Matter.Body.setVelocity(this._MatterObject, {x:Velocity, y:0});
-        Matter.Body.translate(this._MatterObject, {x:Velocity * 2, y:0});
+        Matter.Body.translate(this._MatterObject, {x:Velocity * 1.95, y:0});
     }
     public Move(Vector:any)
     {
