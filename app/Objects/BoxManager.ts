@@ -4,6 +4,7 @@ import * as Three from 'Three';
 
 import { Box } from "./Box";
 import { Crane } from "./Crane";
+import { Level } from "./../Levels/Level";
 import { CollisionManager } from "./../CollisionManager";
 
 class BoxManager
@@ -13,12 +14,14 @@ class BoxManager
     private _ReleasedBox:Box;
     private _Boxes:Box[];
     private _CarriedBoxes:Box[];
-    private _Scene:Three.Scene;
     private _Crane:Crane;
+    private _Level:Level;
+    private _Scene:Three.Scene;
     private _Collision:CollisionManager;
-    public constructor(Scene:Three.Scene, Collision:CollisionManager)
+    public constructor(Scene:Three.Scene, Level:Level, Collision:CollisionManager)
     {
         this._Scene = Scene;
+        this._Level = Level;
         this._Collision = Collision;
         this.Init();
     }
@@ -31,6 +34,8 @@ class BoxManager
         this._Boxes.push(this._BaseBox);
         this._CarriedBoxes.push(this._BaseBox);
         this._Crane = new Crane();
+        this._Crane.Speed = this._Level.CraneSpeed;
+        this._Crane.Limit = this._Level.CraneLimit;
         this._Crane.Box = new Box(this._Scene, this._Collision.Engine, null, true);
         this._Boxes.push(this._Crane.Box);
     }

@@ -6,6 +6,7 @@ import { Box } from "./Objects/Box";
 import { Keyboard } from "./Keyboard";
 import { Renderer } from "./Renderer"; 
 import { BoxManager } from "./Objects/BoxManager";
+import { LevelManager } from "./Levels/LevelManager";
 import { CollisionManager } from "./CollisionManager";
 import { Environment } from "./SceneEnvironment";
 import { Character } from "./Character";
@@ -15,6 +16,7 @@ class SceneManager
     private _Keyboard:Keyboard;
     private _Renderer:Renderer;
     private _BoxManager:BoxManager;
+    private _LevelManager:LevelManager;
     private _CollisionManager:CollisionManager;
     public constructor(Resolution:any)
     {
@@ -23,7 +25,8 @@ class SceneManager
         let Env = new Environment(this._Renderer.Scene);
         this._CollisionManager = new CollisionManager();
         let Char = new Character(this._Renderer.Scene);
-        this._BoxManager = new BoxManager(this._Renderer.Scene, this._CollisionManager);
+        this._LevelManager = new LevelManager();
+        this._BoxManager = new BoxManager(this._Renderer.Scene, this._LevelManager.Level, this._CollisionManager);
         this._Renderer.OnRender.push(this.Update.bind(this));
         this._Renderer.OnRender.push(this._BoxManager.Prepare.bind(this._BoxManager));
         this._Renderer.OnRender.push(this._CollisionManager.Run.bind(this._CollisionManager));
