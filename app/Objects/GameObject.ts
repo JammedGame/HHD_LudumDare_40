@@ -5,6 +5,8 @@ import * as Matter from 'matter-js';
 
 class GameObject
 {
+    private _Force:number;
+    private _Engine:any;
     private _MatterObject:any;
     private _ThreeObject:Three.Object;
     public get Position() { return this._ThreeObject.position; }
@@ -13,6 +15,8 @@ class GameObject
     public set Rotation(value) { this._ThreeObject.rotation = value; }
     public constructor(Scene:Three.Scene, TextureIndex:number, PhysicsEngine?:any, Position?:any, Size?:any, Static?:boolean)
     {
+        this._Force = 0;
+        this._Engine = PhysicsEngine;
         if(GameObject.Textures == null) GameObject.LoadTextures();
         if(Size == null) 
         {
@@ -28,9 +32,23 @@ class GameObject
         Scene.add(this._ThreeObject);
         if(PhysicsEngine != null)
         {
-            this._MatterObject = Matter.Bodies.rectangle(this._ThreeObject.position.x, -this._ThreeObject.position.y, Size.X,Size.Y, { isStatic: !!Static });
+            this._MatterObject = Matter.Bodies.rectangle(this._ThreeObject.position.x, -this._ThreeObject.position.y, Size.X,Size.Y, { isStatic: !!Static, friction:1, frictionStatic:1 });
             Matter.World.add(PhysicsEngine.world, [this._MatterObject]);
         }
+    }
+    public Prepare() : void
+    {
+        if(this._MatterObject != null && this._MatterObject.velocity.x == 0)
+        {
+            //Matter.Body.setPosition(this._MatterObject, {x:this._ThreeObject.position.x, y:-this._ThreeObject.position.y});
+            //if(this._Force != 0) this.Force();
+        }
+    }
+    private Force() : void
+    {
+        if(this._Force < 0) Matter.Body.applyForce(this._MatterObject, {x:this._MatterObject.position.x - 100, y: this._MatterObject.position.y}, {x:this._Force, y:0});
+        else Matter.Body.applyForce(this._MatterObject, {x:this._MatterObject.position.x + 100, y: this._MatterObject.position.y}, {x:this._Force, y:0});
+        this._Force = 0;
     }
     public Update() : void
     {
@@ -40,6 +58,28 @@ class GameObject
             this._ThreeObject.position.y = -this._MatterObject.position.y;
             this._ThreeObject.rotation.z = -this._MatterObject.angle;
         }
+    }
+    public NonStatic() : void
+    {
+        if(this._MatterObject != null && this._Engine != null)
+        {
+            Matter.World.remove(this._Engine.world, this._MatterObject);
+            this._MatterObject = Matter.Bodies.rectangle(this._ThreeObject.position.x, -this._ThreeObject.position.y, 100, 100, {friction:1, frictionStatic:1});
+            Matter.World.add(this._Engine.world, [this._MatterObject]);
+        }
+    }
+    public UpdateForce(Force:number) : void
+    {
+        this._Force += Force;
+    }
+    public SetVelocity(Velocity:number) : void
+    {
+        Matter.Body.setVelocity(this._MatterObject, {x:Velocity, y:0});
+        Matter.Body.translate(this._MatterObject, {x:Velocity * 2, y:0});
+    }
+    public Move(Vector:any)
+    {
+        Matter.Body.translate(this._MatterObject, Vector);
     }
     public static Textures:any[];
     public static LoadTextures()
