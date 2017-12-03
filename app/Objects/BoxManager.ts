@@ -22,7 +22,7 @@ class BoxManager
         this._Collision = Collision;
         this.Init();
     }
-    public Init()
+    public Init() : void
     {
         this._Velocity = 0;
         this._Boxes = [];
@@ -34,7 +34,16 @@ class BoxManager
         this._Crane.Box = new Box(this._Scene, this._Collision.Engine, null, true);
         this._Boxes.push(this._Crane.Box);
     }
-    public Prepare()
+    public Reset() : void
+    {
+        for(let i in this._Boxes)
+        {
+            this._Boxes[i].Destroy();
+        }
+        this._Crane = null;
+        this.Init();
+    }
+    public Prepare() : void
     {
         this._Crane.Update();
         for(let i in this._Boxes)
@@ -42,7 +51,7 @@ class BoxManager
             this._Boxes[i].Prepare();
         }
     }
-    public Update()
+    public Update() : void
     {
         for(let i in this._Boxes)
         {
@@ -65,14 +74,22 @@ class BoxManager
     }
     public SetMove(Speed:number)
     {
-        this.UpdateCarriedBoxes();
-        if(Speed == 0) this._Velocity = 0;
-        else this._Velocity += Speed;
-        if(this._Velocity > 5) this._Velocity = 5;
-        if(this._Velocity < -5) this._Velocity = -5;
-        this._BaseBox.SetVelocity(this._Velocity);
+        if(this._BaseBox.Position.x > 3000)
+        {
+            this.UpdateCarriedBoxes();
+            console.log("Truck!");
+        }
+        else
+        {
+            if(Speed == 0) this._Velocity = 0;
+            else this._Velocity += Speed;
+            if(this._Velocity > 5) this._Velocity = 5;
+            if(this._Velocity < -5) this._Velocity = -5;
+            if(this._Velocity < 0 && this._BaseBox.Position.x <= -100) this._Velocity = 0;
+            this._BaseBox.SetVelocity(this._Velocity);
+        }
     }
-    private UpdateCarriedBoxes()
+    private UpdateCarriedBoxes() : void
     {
         for(let i in this._CarriedBoxes)
         {

@@ -29,6 +29,11 @@ class SceneManager
         this._Renderer.OnRender.push(this._CollisionManager.Run.bind(this._CollisionManager));
         this._Renderer.OnRender.push(this._BoxManager.Update.bind(this._BoxManager));
     }
+    public Reset() : void
+    {
+        this._BoxManager.Reset();
+        this._Renderer.Reset();
+    }
     private Update() : void
     {
         if(this._Keyboard.Space) 
@@ -46,6 +51,11 @@ class SceneManager
         else
         {
             this._BoxManager.SetMove(0);
+        }
+        if(this._Keyboard.Reset) 
+        { 
+            this._Keyboard.Reset = false;
+            this.Reset(); 
         }
     }
 }

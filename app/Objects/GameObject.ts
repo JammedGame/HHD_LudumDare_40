@@ -7,6 +7,7 @@ class GameObject
 {
     private _Force:number;
     private _Engine:any;
+    private _Scene:Three.Scene;
     private _MatterObject:any;
     private _ThreeObject:Three.Object;
     public get Position() { return this._ThreeObject.position; }
@@ -16,6 +17,7 @@ class GameObject
     public constructor(Scene:Three.Scene, TextureIndex:number, PhysicsEngine?:any, Position?:any, Size?:any, Static?:boolean)
     {
         this._Force = 0;
+        this._Scene = Scene;
         this._Engine = PhysicsEngine;
         if(GameObject.Textures == null) GameObject.LoadTextures();
         if(Size == null) 
@@ -43,6 +45,15 @@ class GameObject
             //Matter.Body.setPosition(this._MatterObject, {x:this._ThreeObject.position.x, y:-this._ThreeObject.position.y});
             //if(this._Force != 0) this.Force();
         }
+    }
+    public Destroy() : void
+    {
+        this._Scene.remove(this._ThreeObject);
+        this._ThreeObject.material.dispose();
+        this._ThreeObject.geometry.dispose();
+        this._ThreeObject = null;
+        Matter.World.remove(this._Engine.world, this._MatterObject);
+        this._MatterObject = null;
     }
     private Force() : void
     {

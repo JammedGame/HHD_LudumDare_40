@@ -37,7 +37,11 @@ class Renderer
         this.Resize();
         window.requestAnimationFrame(this.Draw.bind(this));
     }
-    public Resize()
+    public Reset() : void
+    {
+        this._Scene.position.set(0,0,0);
+    }
+    public Resize() : void
     {
         let Width:number = this._Parent.clientWidth;
         let Height:number = this._Parent.clientHeight;

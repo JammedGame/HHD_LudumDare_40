@@ -8,6 +8,10 @@ class Environment
     public constructor(Scene:Three.Scene)
     {
         this._Scene = Scene;
+        this.Init();
+    }
+    public Init() : void
+    {
         if(Environment.Textures == null) Environment.LoadTextures();
         let Floor = new Three.Mesh( new Three.CubeGeometry(7000,10,1000), new Three.MeshPhongMaterial( { color: 0xFF8C00, map:Environment.Textures[0] } ) );
         Floor.position.x = 2000;
