@@ -28,6 +28,7 @@ class BoxTypeDisplay
     public SetLevel(Level:Level) : void
     {
         this._Level = Level;
+        this.HardUpdate();
     }
     public Update() : void
     {
