@@ -50,14 +50,17 @@ class SceneManager
         } 
         if(this._Keyboard.Left) 
         { 
+            this._Char.SetAction("Moonwalk");
             this._BoxManager.SetMove(-0.1); 
         } 
         else if(this._Keyboard.Right) 
         { 
+            this._Char.SetAction("Walk");
             this._BoxManager.SetMove(0.1); 
         }
         else
         {
+            this._Char.SetAction("Idle");
             this._BoxManager.SetMove(0);
         }
         if(this._Keyboard.Reset) 

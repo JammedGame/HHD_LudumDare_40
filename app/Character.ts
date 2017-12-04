@@ -6,15 +6,20 @@ OBJLoader(Three);
 
 class Character
 {
+    private _Loaded:boolean;
     private _File1:any;
     private _File2:any;
     private _File3:any;
+    private _Idle:any;
+    private _Walk:any;
+    private _Moonwalk:any;
     private _Mixer:any;
     private static Geometry:any;
     private Scene:Three.Scene;
     public get Mixer():any { return this._Mixer; }
     public constructor(Scene:Three.Scene)
     {
+        this._Loaded = false;
         this.Scene = Scene;
         if(Character.Textures == null) Character.LoadTextures();
         if(!Character.Geometry) this.LoadGeometry1();
@@ -43,19 +48,48 @@ class Character
     private LoadFinished(Geometry, materials) : void
     {
         this._File3 = Geometry;
-        let Mesh = new Three.SkinnedMesh( this._File2, new Three.MeshLambertMaterial( { color: 0xffffff, map:Character.Textures[0], skinning: true }));
+
+        this._File1.animations.push(this._File2.animations[0]);
+        this._File1.animations.push(this._File3.animations[0]);
+        this._File1.animations[0].name = "Idle";
+        this._File1.animations[1].name = "Walk";
+        this._File1.animations[2].name = "Moonwalk";
+
+        let Mesh = new Three.SkinnedMesh( this._File1, new Three.MeshLambertMaterial( { color: 0xffffff, map:Character.Textures[0], skinning: true }));
         Mesh.scale.set(100,100,100);
         Mesh.rotation.y = Math.PI / 2;
-        Mesh.position.x = -100;
+        Mesh.position.x = -110;
         Mesh.position.y = 0;
 
         this.Scene.add(Mesh);
 
-        let clip = Three.AnimationClip.findByName( Mesh.geometry.animations, 'Armature|Main|Layer0' );
-        let AM = new Three.AnimationMixer(Mesh);
-        this._Mixer = AM;
-        let AA = AM.clipAction(clip);
-        AA.play();
+        this._Mixer = new Three.AnimationMixer(Mesh);
+
+        let clip = Three.AnimationClip.findByName( Mesh.geometry.animations, 'Idle' );
+        this._Idle = this._Mixer.clipAction(clip);
+        this._Idle.play();
+
+        clip = Three.AnimationClip.findByName( Mesh.geometry.animations, 'Walk' );
+        this._Walk = this._Mixer.clipAction(clip);
+        this._Walk.weight = 0;
+        this._Walk.play();
+
+        clip = Three.AnimationClip.findByName( Mesh.geometry.animations, 'Moonwalk' );
+        this._Moonwalk = this._Mixer.clipAction(clip);
+        this._Moonwalk.weight = 0;
+        this._Moonwalk.play();
+
+        this._Loaded = true;
+    }
+    public SetAction(Action:string)
+    {
+        if(!this._Loaded) return;
+        this._Idle.weight = 0;
+        this._Walk.weight = 0;
+        this._Moonwalk.weight = 0;
+        if(Action == "Idle") this._Idle.weight = 1;
+        else if(Action == "Walk") this._Walk.weight = 1;
+        else if(Action == "Moonwalk") this._Moonwalk.weight = 1;
     }
     public static Textures:any[];
     public static LoadTextures()
