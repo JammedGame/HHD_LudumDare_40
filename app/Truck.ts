@@ -28,9 +28,9 @@ class Truck
     private LoadFinished(geometry, materials) : void
     {
         geometry.uvsNeedUpdate = true;
-        let Mesh = new Three.Mesh( geometry, new Three.MeshLambertMaterial( { color: 0xffffff }));
-        Mesh.rotation.y = Math.PI / 2;
-        Mesh.scale.set(0.65,0.65,0.65);
+        let Mesh = new Three.Mesh( geometry, new Three.MeshLambertMaterial( { color: 0xffffff, map:Truck.Textures[0] }));
+        Mesh.rotation.y = -Math.PI / 2;
+        Mesh.scale.set(80,80,80);
         Mesh.position.set(3100,200,100);
         this.Scene.add(Mesh);
         this.CreateCollider();
@@ -43,7 +43,7 @@ class Truck
     public static Textures:any[];
     public static LoadTextures()
     {
-        let TextureUrls = ["build/resources/char2.png"];
+        let TextureUrls = ["build/resources/Truck.png"];
         let TextureLoader = new Three.TextureLoader();
         let Textures : Three.Texture[] = [];
         for(let j = 0; j < TextureUrls.length; j++)
