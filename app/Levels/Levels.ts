@@ -2,7 +2,7 @@ export { Levels }
 
 let Levels = 
 [ 
-    
+    /*
     // Level 1
     {
         Index: 0,
@@ -292,27 +292,159 @@ let Levels =
         ]
     },
     
-        // Level 11
-        {
-            Index: 10,
-            Passes: 4,
-            BronzeScore: 9100,
-            SilverScore: 10400,
-            GoldScore: 11000,
-            CraneSpeed: 30,
-            CraneLimit: 500,
-            BoxTypes:
-            [
-                {
-                    Type: "Metal",
-                    Amount: 6
-                },
-                {
-                    Type: "Large Metal",
-                    Amount: 13
-                }
-            ]
-        }
+    // Level 11
+    {
+        Index: 10,
+        Passes: 4,
+        BronzeScore: 9100,
+        SilverScore: 10400,
+        GoldScore: 11000,
+        CraneSpeed: 30,
+        CraneLimit: 500,
+        BoxTypes:
+        [
+            {
+                Type: "Metal",
+                Amount: 6
+            },
+            {
+                Type: "Large Metal",
+                Amount: 13
+            }
+        ]
+    },
+    
+    // Level 12
+    {
+        Index: 11,
+        Passes: 5,
+        BronzeScore: 9900,
+        SilverScore: 11200,
+        GoldScore: 12000,
+        CraneSpeed: 25,
+        CraneLimit: 150,
+        BoxTypes:
+        [
+            {
+                Type: "Wooden",
+                Amount: 4
+            },
+            {
+                Type: "Metal",
+                Amount: 9
+            },
+            {
+                Type: "Large Wooden",
+                Amount: 13
+            }
+        ]
+    },
+    
+     // Level 13
+    {
+        Index: 12,
+        Passes: 6,
+        BronzeScore: 11900,
+        SilverScore: 12400,
+        GoldScore: 13000,
+        CraneSpeed: 25,
+        CraneLimit: 500,
+        BoxTypes:
+        [
+            {
+                Type: "Cardboard",
+                Amount: 8
+            },
+            {
+                Type: "Metal",
+                Amount: 10
+            },
+            {
+                Type: "Large Cardboard",
+                Amount: 6
+            },
+            {
+                Type: "Large Wooden",
+                Amount: 9
+            },
+             {
+                Type: "Large Metal",
+                Amount: 1
+            }
+        ]
+    },
+    
+     // Level 14
+     {
+        Index: 13,
+        Passes: 7,
+        BronzeScore: 12500,
+        SilverScore: 12900,
+        GoldScore: 14000,
+        CraneSpeed: 27,
+        CraneLimit: 400,
+        BoxTypes:
+        [
+            {
+                Type: "Cardboard",
+                Amount: 5
+            },
+            {
+                Type: "Metal",
+                Amount: 5
+            },
+            {
+                Type: "Large Cardboard",
+                Amount: 8
+            },
+            {
+                Type: "Large Wooden",
+                Amount: 3
+            },
+            {
+                Type: "Large Metal",
+                Amount: 8
+            }
+        ]
+    },
+    */
+     // Level 15
+     {
+        Index: 14,
+        Passes: 7,
+        BronzeScore: 13000,
+        SilverScore: 13500,
+        GoldScore: 15000,
+        CraneSpeed: 30,
+        CraneLimit: 350,
+        BoxTypes:
+        [
+            {
+                Type: "Cardboard",
+                Amount: 5
+            },
+            {
+                Type: "Wooden",
+                Amount: 5
+            },
+            {
+                Type: "Metal",
+                Amount: 5
+            },
+            {
+                Type: "Large Cardboard",
+                Amount: 7
+            },
+            {
+                Type: "Large Wooden",
+                Amount: 4
+            },
+            {
+                Type: "Large Metal",
+                Amount: 7
+            }
+        ]
+    }
 
 
 
