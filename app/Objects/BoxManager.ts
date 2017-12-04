@@ -6,10 +6,12 @@ import { Box } from "./Box";
 import { Crane } from "./Crane";
 import { Level } from "./../Levels/Level";
 import { Messages } from "./../UI/Messages";
+import { BoxFactory } from "./BoxFactory";
 import { CollisionManager } from "./../CollisionManager";
 
 class BoxManager
 {
+    private _BoxType:number;
     private _Finished:boolean;
     private _Velocity:number;
     private _BaseBox:Box;
@@ -21,29 +23,30 @@ class BoxManager
     private _Scene:Three.Scene;
     private _Messages:Messages;
     private _Collision:CollisionManager;
+    private _Factory:BoxFactory;
     public get Finished():boolean { return this._Finished; }
-    public constructor(Scene:Three.Scene, Level:Level, Collision:CollisionManager)
+    public constructor(Scene:Three.Scene, Engine:any, Level:Level, Collision:CollisionManager)
     {
         this._Scene = Scene;
         this._Level = Level;
         this._Collision = Collision;
         this._Messages = new Messages(Level);
+        this._Factory = new BoxFactory(Scene, Engine);
         this.Init();
     }
     public Init() : void
     {
+        this._BoxType = 0;
         this._Finished = false;
         this._Velocity = 0;
         this._Boxes = [];
         this._CarriedBoxes = [];
-        this._BaseBox = new Box(this._Scene, this._Collision.Engine, {X:0, Y:200, Z:0}, true);
+        this._BaseBox = new Box(this._Scene, 0, this._Collision.Engine, {X:0, Y:200, Z:0}, null, true);
         this._Boxes.push(this._BaseBox);
         this._CarriedBoxes.push(this._BaseBox);
         this._Crane = new Crane();
         this._Crane.Speed = this._Level.CraneSpeed;
         this._Crane.Limit = this._Level.CraneLimit;
-        this._Crane.Box = new Box(this._Scene, this._Collision.Engine, null, true);
-        this._Boxes.push(this._Crane.Box);
     }
     public SetLevel(Level:Level) : void
     {
@@ -58,6 +61,7 @@ class BoxManager
             this._Boxes[i].Destroy();
         }
         this._Crane = null;
+        this._ReleasedBox = null;
         this.Init();
     }
     public Prepare() : void
@@ -72,14 +76,35 @@ class BoxManager
     {
         for(let i in this._Boxes)
         {
-            this._Boxes[i].Update();
+            if(this._Boxes[i]) this._Boxes[i].Update();
         }
-        if(!this._Crane.Box && this._ReleasedBox.Position.y < 500)
+        if(!this._Crane.Box && (!this._ReleasedBox || this._ReleasedBox.Position.y < 500))
         {
-            this._Crane.Box = new Box(this._Scene, this._Collision.Engine, null, true);
+            this._Crane.Box = this.GetNewCraneBox();
             this._Boxes.push(this._Crane.Box);
         }
         this._Scene.position.x = -this._BaseBox.Position.x;
+    }
+    private GetNewCraneBox() : Box
+    {
+        while(this._Level.BoxTypes[this._BoxType].Ammount = 0)
+        {
+            this._BoxType++;
+            if(this._BoxType >= this._Level.BoxTypes.length)
+            {
+                this._BoxType = -1;
+                break;
+            }
+        }
+        if(this._BoxType == -1)
+        {
+            for(let i = 0; i < this._Level.BoxTypes.length; i++)
+            {
+                if(this._Level.BoxTypes[i].Ammount != 0) this._BoxType = i;
+            }
+        }
+        if(this._BoxType == -1) return null;
+        else return this._Factory.Generate(this._Level.BoxTypes[this._BoxType].Type, null, true);
     }
     public ReleaseBox() : void
     {

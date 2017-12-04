@@ -27,9 +27,9 @@ class Character
     {
         geometry.uvsNeedUpdate = true;
         let Mesh = new Three.Mesh( geometry, new Three.MeshLambertMaterial( { color: 0xffffff, map:Character.Textures[0] }));
-        Mesh.scale.set(80,80,80);
-        Mesh.rotation.y = 120;
-        Mesh.position.x = -200;
+        Mesh.scale.set(100,100,100);
+        Mesh.rotation.y = Math.PI / 2;
+        Mesh.position.x = -100;
         Mesh.position.y = 30;
         
         console.log(Mesh);

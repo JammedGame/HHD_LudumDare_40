@@ -28,7 +28,7 @@ class SceneManager
         let Char = new Character(this._Renderer.Scene);
         let Truc = new Truck(this._Renderer.Scene, this._CollisionManager.Engine);
         this._LevelManager = new LevelManager();
-        this._BoxManager = new BoxManager(this._Renderer.Scene, this._LevelManager.Level, this._CollisionManager);
+        this._BoxManager = new BoxManager(this._Renderer.Scene, this._CollisionManager.Engine, this._LevelManager.Level, this._CollisionManager);
         this._Renderer.OnRender.push(this.Update.bind(this));
         this._Renderer.OnRender.push(this._BoxManager.Prepare.bind(this._BoxManager));
         this._Renderer.OnRender.push(this._CollisionManager.Run.bind(this._CollisionManager));

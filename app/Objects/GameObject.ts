@@ -5,6 +5,7 @@ import * as Matter from 'matter-js';
 
 class GameObject
 {
+    private _Mass:number;
     private _Force:number;
     private _Engine:any;
     private _Scene:Three.Scene;
@@ -14,8 +15,9 @@ class GameObject
     public set Position(value) { this._ThreeObject.position = value; }
     public get Rotation() { return this._ThreeObject.rotation; }
     public set Rotation(value) { this._ThreeObject.rotation = value; }
-    public constructor(Scene:Three.Scene, TextureIndex:number, PhysicsEngine?:any, Position?:any, Size?:any, Static?:boolean)
+    public constructor(Scene:Three.Scene, TextureIndex:number, PhysicsEngine?:any, Position?:any, Size?:any, Static?:boolean, Mass?:number)
     {
+        this._Mass = Mass || 1;
         this._Force = 0;
         this._Scene = Scene;
         this._Engine = PhysicsEngine;
@@ -77,7 +79,7 @@ class GameObject
             Matter.World.remove(this._Engine.world, this._MatterObject);
             this._MatterObject = Matter.Bodies.rectangle(this._ThreeObject.position.x, -this._ThreeObject.position.y, 100, 100,
             {
-                mass:1,
+                mass:this._Mass,
                 friction:1,
                 frictionStatic:1
             });
@@ -100,7 +102,7 @@ class GameObject
     public static Textures:any[];
     public static LoadTextures()
     {
-        let TextureUrls = ["build/resources/box.png"];
+        let TextureUrls = ["build/resources/box0.png", "build/resources/box1.png", "build/resources/box2.png"];
         let TextureLoader = new Three.TextureLoader();
         let Textures : Three.Texture[] = [];
         for(let j = 0; j < TextureUrls.length; j++)

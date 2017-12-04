@@ -15,6 +15,10 @@ let Levels =
         [
             {
                 Type: "Cardboard",
+                Ammount: 2
+            },
+            {
+                Type: "Wooden",
                 Ammount: 10
             }
         ]

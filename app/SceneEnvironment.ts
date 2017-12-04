@@ -13,7 +13,7 @@ class Environment
     public Init() : void
     {
         if(Environment.Textures == null) Environment.LoadTextures();
-        let Floor = new Three.Mesh( new Three.CubeGeometry(7000,10,1000), new Three.MeshPhongMaterial( { color: 0x72587F, map:Environment.Textures[1] } ) );
+        let Floor = new Three.Mesh( new Three.CubeGeometry(7000,10,1000), new Three.MeshPhongMaterial( { color: 0xFF8C00, map:Environment.Textures[1] } ) );
         Floor.position.x = 2000;
         this._Scene.add(Floor);
         let Wall = new Three.Mesh( new Three.CubeGeometry(7000,1800,10), new Three.MeshPhongMaterial( { color: 0xFFFFFF, map:Environment.Textures[0] } ) );
@@ -51,7 +51,7 @@ class Environment
             let NewTexture = TextureLoader.load(TextureUrls[j]);
             NewTexture .wrapS = NewTexture .wrapT = Three.RepeatWrapping;
             NewTexture.offset.set( 0, 0 );
-            if(j > 0) NewTexture.repeat.set( 5, 1 );
+            if(j > 0) NewTexture.repeat.set( 20, 4 );
             else NewTexture.repeat.set( 3, 1 );
             Textures.push(NewTexture);
         }
