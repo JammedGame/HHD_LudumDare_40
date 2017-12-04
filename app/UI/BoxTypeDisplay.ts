@@ -2,11 +2,11 @@ export { BoxTypeDisplay }
 
 import { Level } from "./../Levels/Level";
 
-const BOX_TYPE_DISPLAYS_AMOUNT = 3;
+const BOX_TYPE_DISPLAYS_AMOUNT = 6;
 
 class BoxTypeDisplay
 {
-    private static TextureUrls = ["build/resources/box0.png", "build/resources/box1.png", "build/resources/box2.png", "build/resources/Lbox0.png", "build/resources/Lbox1.png", "build/resources/Lbox2.png"];
+    private static TextureUrls = ["build/resources/box0.png", "build/resources/box1.png", "build/resources/box2.png", "build/resources/box3.png", "build/resources/box4.png", "build/resources/box5.png"];
     private _Level:Level;
     private _BoxDivs:HTMLElement[];
     private _BoxImgs:HTMLImageElement[];

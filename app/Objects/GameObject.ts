@@ -107,12 +107,14 @@ class GameObject
     public static Textures:any[];
     public static LoadTextures()
     {
-        let TextureUrls = ["build/resources/box0.png", "build/resources/box1.png", "build/resources/box2.png","build/resources/Lbox0.png", "build/resources/Lbox1.png", "build/resources/Lbox2.png"];
+        let TextureUrls = ["build/resources/box0.png", "build/resources/box1.png", "build/resources/box2.png","build/resources/box3.png", "build/resources/box4.png", "build/resources/box5.png"];
         let TextureLoader = new Three.TextureLoader();
         let Textures : Three.Texture[] = [];
         for(let j = 0; j < TextureUrls.length; j++)
         {
             let NewTexture = TextureLoader.load(TextureUrls[j]);
+            NewTexture .wrapS = NewTexture .wrapT = Three.RepeatWrapping;
+            if(j > 2) NewTexture.repeat.set( 2, 1 );
             Textures.push(NewTexture);
         }
         GameObject.Textures = Textures;
