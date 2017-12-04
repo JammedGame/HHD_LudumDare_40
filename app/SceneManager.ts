@@ -10,6 +10,7 @@ import { LevelManager } from "./Levels/LevelManager";
 import { CollisionManager } from "./CollisionManager";
 import { Environment } from "./SceneEnvironment";
 import { Character } from "./Character";
+import { Truck } from "./Truck";
 
 class SceneManager
 {
@@ -25,6 +26,7 @@ class SceneManager
         let Env = new Environment(this._Renderer.Scene);
         this._CollisionManager = new CollisionManager();
         let Char = new Character(this._Renderer.Scene);
+        let Truc = new Truck(this._Renderer.Scene, this._CollisionManager.Engine);
         this._LevelManager = new LevelManager();
         this._BoxManager = new BoxManager(this._Renderer.Scene, this._LevelManager.Level, this._CollisionManager);
         this._Renderer.OnRender.push(this.Update.bind(this));
