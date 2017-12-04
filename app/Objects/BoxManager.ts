@@ -42,6 +42,10 @@ class BoxManager
         this._Crane.Box = new Box(this._Scene, this._Collision.Engine, null, true);
         this._Boxes.push(this._Crane.Box);
     }
+    public SetLevel(Level:Level) : void
+    {
+        this._Level = Level;
+    }
     public Reset() : void
     {
         for(let i in this._Boxes)

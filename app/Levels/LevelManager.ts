@@ -25,7 +25,7 @@ class LevelManager
     {
         if(this._Level.Pass == this._Level.Passes)
         {
-            if(this._Level.Score > this._Level.BronzeScore)
+            if(this._Level.Score >= this._Level.BronzeScore)
             {
                 this._Index++;
                 this._Level = new Level(Levels[this._Index]);
@@ -40,7 +40,6 @@ class LevelManager
         else
         {
             this._Level.Pass += 1;
-            console.log(this._Level);
         }
     }
 }
