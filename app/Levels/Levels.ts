@@ -2,6 +2,7 @@ export { Levels }
 
 let Levels = 
 [ 
+    
     // Level 1
     {
         Index: 0,
@@ -23,7 +24,7 @@ let Levels =
     // Level 2
     {
         Index: 1,
-        Passes: 4,
+        Passes: 3,
         BronzeScore: 750,
         SilverScore: 1500,
         GoldScore: 2000,
@@ -45,7 +46,7 @@ let Levels =
      // Level 3
      {
         Index: 2,
-        Passes: 5,
+        Passes: 4,
         BronzeScore: 1200,
         SilverScore: 2500,
         GoldScore: 3000,
@@ -71,7 +72,7 @@ let Levels =
      // Level 4
      {
         Index: 3,
-        Passes: 5,
+        Passes: 4,
         BronzeScore: 2700,
         SilverScore: 3200,
         GoldScore: 4000,
@@ -97,7 +98,7 @@ let Levels =
     // Level 5
     {
         Index: 4,
-        Passes: 6,
+        Passes: 4,
         BronzeScore: 3200,
         SilverScore: 4400,
         GoldScore: 5000,
@@ -116,6 +117,44 @@ let Levels =
             {
                 Type: "Metal",
                 Amount: 15
+            }
+        ]
+    },
+
+     // Level 6
+    {
+        Index: 5,
+        Passes: 4,
+        BronzeScore: 4300,
+        SilverScore: 4900,
+        GoldScore: 6000,
+        CraneSpeed: 10,
+        CraneLimit: 200,
+        BoxTypes:
+        [
+            {
+                Type: "Cardboard",
+                Amount: 2
+            },
+            {
+                Type: "Wooden",
+                Amount: 1
+            },
+            {
+                Type: "Metal",
+                Amount: 3
+            },
+            {
+                Type: "Large Metal",
+                Amount: 4
+            },
+            {
+                Type: "Large Wooden",
+                Amount: 3
+            },
+            {
+                Type: "Large Cardboard",
+                Amount: 2
             }
         ]
     }

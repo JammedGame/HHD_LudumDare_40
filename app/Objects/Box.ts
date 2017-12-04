@@ -18,6 +18,14 @@ class Box extends GameObject
                  break;
         case 2 : this._Score = 400;
                  break;
+        case 3 : this._Score = 400;
+                 break;
+        case 4 : this._Score = 600;
+                 break;
+        case 5 : this._Score = 800;
+                 break;       
+        
         }
+        
     }
 }

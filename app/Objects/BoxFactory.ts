@@ -26,7 +26,19 @@ class BoxFactory
         }
         else if(Type == "Metal")
         {
-            NewBox = new Box(this._Scene, 2, this._Engine, Position, {X:100, Y:100, Z:100}, Static, 5);
+            NewBox = new Box(this._Scene, 2, this._Engine, Position, {X:100, Y:100, Z:100}, Static, 4);
+        }
+        else if(Type == "Large Cardboard")
+        {
+            NewBox = new Box(this._Scene, 3, this._Engine, Position, {X:200, Y:100, Z:100}, Static, 4);
+        }
+        else if(Type == "Large Wooden")
+        {
+            NewBox = new Box(this._Scene, 4, this._Engine, Position, {X:200, Y:100, Z:100}, Static, 8);
+        }
+        else if(Type == "Large Metal")
+        {
+            NewBox = new Box(this._Scene, 5, this._Engine, Position, {X:200, Y:100, Z:100}, Static, 32);
         }
         return NewBox;
     }

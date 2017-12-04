@@ -11,6 +11,7 @@ class GameObject
     private _Scene:Three.Scene;
     private _MatterObject:any;
     private _ThreeObject:Three.Object;
+    private _Size : any;
     public get Position() { return this._ThreeObject.position; }
     public set Position(value) { this._ThreeObject.position = value; }
     public get Rotation() { return this._ThreeObject.rotation; }
@@ -25,6 +26,10 @@ class GameObject
         if(Size == null) 
         {
             Size = {X:100, Y:100, Z:100};
+        }
+        else 
+        {
+            this._Size = Size;
         }
         this._ThreeObject = new Three.Mesh( new Three.CubeGeometry(Size.X,Size.Y,Size.Z), new Three.MeshPhongMaterial( { color: 0xffffff, map:GameObject.Textures[TextureIndex] } ) );
         if(Position)
@@ -77,7 +82,7 @@ class GameObject
         if(this._MatterObject != null && this._Engine != null)
         {
             Matter.World.remove(this._Engine.world, this._MatterObject);
-            this._MatterObject = Matter.Bodies.rectangle(this._ThreeObject.position.x, -this._ThreeObject.position.y, 100, 100,
+            this._MatterObject = Matter.Bodies.rectangle(this._ThreeObject.position.x, -this._ThreeObject.position.y, this._Size.X, this._Size.Y,
             {
                 mass:this._Mass,
                 friction:1,
@@ -102,7 +107,7 @@ class GameObject
     public static Textures:any[];
     public static LoadTextures()
     {
-        let TextureUrls = ["build/resources/box0.png", "build/resources/box1.png", "build/resources/box2.png"];
+        let TextureUrls = ["build/resources/box0.png", "build/resources/box1.png", "build/resources/box2.png","build/resources/Lbox0.png", "build/resources/Lbox1.png", "build/resources/Lbox2.png"];
         let TextureLoader = new Three.TextureLoader();
         let Textures : Three.Texture[] = [];
         for(let j = 0; j < TextureUrls.length; j++)
