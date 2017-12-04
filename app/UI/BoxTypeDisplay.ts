@@ -54,6 +54,9 @@ class BoxTypeDisplay
         if(Type == "Cardboard") return 0;
         if(Type == "Wooden") return 1;
         if(Type == "Metal") return 2;
+        if(Type == "Large Cardboard") return 3;
+        if(Type == "Large Wooden") return 4;
+        if(Type == "Large Metal") return 5;
         return -1;
     }
 }
