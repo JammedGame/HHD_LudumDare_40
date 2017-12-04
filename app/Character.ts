@@ -12,6 +12,7 @@ class Character
     private _File3:any;
     private _Idle:any;
     private _Walk:any;
+    private _Mesh:any;
     private _Moonwalk:any;
     private _Mixer:any;
     private static Geometry:any;
@@ -61,6 +62,8 @@ class Character
         Mesh.position.x = -110;
         Mesh.position.y = 0;
 
+        this._Mesh = Mesh;
+
         this.Scene.add(Mesh);
 
         this._Mixer = new Three.AnimationMixer(Mesh);
@@ -90,6 +93,15 @@ class Character
         if(Action == "Idle") this._Idle.weight = 1;
         else if(Action == "Walk") this._Walk.weight = 1;
         else if(Action == "Moonwalk") this._Moonwalk.weight = 1;
+    }
+    public Move(Vector:any) : void
+    {
+        if(!this._Loaded) return;
+        this._Mesh.position.x += Vector.X;
+    }
+    public Reset() : void
+    {
+        this._Mesh.position.x = -110;
     }
     public static Textures:any[];
     public static LoadTextures()

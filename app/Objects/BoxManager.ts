@@ -12,6 +12,7 @@ import { CollisionManager } from "./../CollisionManager";
 
 class BoxManager
 {
+    private _Character:any;
     private _BoxType:number;
     private _Finished:boolean;
     private _Velocity:number;
@@ -27,11 +28,12 @@ class BoxManager
     private _Collision:CollisionManager;
     private _Factory:BoxFactory;
     public get Finished():boolean { return this._Finished; }
-    public constructor(Scene:Three.Scene, Engine:any, Level:Level, Collision:CollisionManager)
+    public constructor(Scene:Three.Scene, Engine:any, Level:Level, Collision:CollisionManager, Character:any)
     {
         this._Scene = Scene;
         this._Level = Level;
         this._Collision = Collision;
+        this._Character = Character;
         this._Messages = new Messages(Level);
         this._Display = new BoxTypeDisplay(Level);
         this._Factory = new BoxFactory(Scene, Engine);
@@ -161,6 +163,7 @@ class BoxManager
             if(this._Velocity < -5) this._Velocity = -5;
             if(this._Velocity < 0 && this._BaseBox.Position.x <= -100) this._Velocity = 0;
             this._BaseBox.SetVelocity(this._Velocity);
+            this._Character.Move({X:this._Velocity});
         }
     }
     private UpdateCarriedBoxes() : void
