@@ -37,7 +37,7 @@ class Truck
     }
     private CreateCollider() : void
     {
-        let Collider = Matter.Bodies.rectangle(3200, -110, 400, 220, { isStatic: true });
+        let Collider = Matter.Bodies.rectangle(3400, -110, 800, 220, { isStatic: true });
         Matter.World.add(this._Engine.world, [Collider]);
     }
     public static Textures:any[];
