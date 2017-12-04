@@ -24,6 +24,10 @@ class BoxFactory
         {
             NewBox = new Box(this._Scene, 1, this._Engine, Position, {X:100, Y:100, Z:100}, Static, 1);
         }
+        else if(Type == "Metal")
+        {
+            NewBox = new Box(this._Scene, 2, this._Engine, Position, {X:100, Y:100, Z:100}, Static, 5);
+        }
         return NewBox;
     }
 }

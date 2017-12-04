@@ -178,7 +178,7 @@ class BoxManager
         let Score = 0;
         for(let i in this._CarriedBoxes)
         {
-            Score += this._CarriedBoxes[i].Score;
+            Score += this._CarriedBoxes[i].Score;this._CarriedBoxes[i].Score;
         }
         return Score;
     }

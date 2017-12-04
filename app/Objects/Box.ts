@@ -11,6 +11,13 @@ class Box extends GameObject
     public constructor(Scene:Three.Scene, TexIndex:number, PhysicsEngine?:any, Position?:any, Size?:any, Static?:boolean, Mass?:number)
     {
         super(Scene, TexIndex, PhysicsEngine, Position, Size, Static, Mass);
-        this._Score = 200;
+        switch(TexIndex) { 
+        case 0 : this._Score = 200;
+                 break;
+        case 1 : this._Score = 300;
+                 break;
+        case 2 : this._Score = 400;
+                 break;
+        }
     }
 }
