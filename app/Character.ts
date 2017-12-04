@@ -113,6 +113,7 @@ class Character
     public Reset() : void
     {
         this._Mesh.position.x = -110;
+        Matter.Body.setPosition(this._Collider, {x:-110, y:-250});
     }
     public static Textures:any[];
     public static LoadTextures()
