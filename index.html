@@ -2,15 +2,29 @@
   <head>
     <title id="title">Stack Overflow</title>
   </head>
-  <body style="margin:0px; padding:0px;">
+  <body style="margin:0px; padding:0px; overflow:hidden;">
     
     <div id="canvas-parent" style="margin:0px; padding:0px; width:100%; height:100vh;">
       <canvas id="canvas"></canvas>
     </div>
-    <div id="ui-elements" style="position:absolute; top:20px; left:50px;">
+    <div id="ui-elements-hud" style="position:absolute; top:20px; left:50px;">
       <p id="lvl-score" style="color:white; font-size:20px; font-family:Arial, Helvetica, sans-serif;">Score: 0 / 1000</p>
       <p id="lvl-pass" style="color:white; font-size:20px; font-family:Arial, Helvetica, sans-serif;">Pass: 1 / 3</p>
       <p id="lvl-current" style="color:white; font-size:20px; font-family:Arial, Helvetica, sans-serif;">Level: 1</p>
+    </div>
+    <div id="ui-elements-msg" style="position:absolute; top:350px; left:10px; width:100%; text-align:center;">
+      <p id="msg-pass" style="color:white; font-size:20px; font-family:Arial, Helvetica, sans-serif; display:none;">
+        Press [Enter] to continue.<br />
+        Or press [R] ro restart.
+      </p>
+      <p id="msg-level" style="color:white; font-size:20px; font-family:Arial, Helvetica, sans-serif; display:none">
+        You succesfully completed level! <br />
+        Press [Enter] to continue to next level.
+      </p>
+      <p id="msg-fail" style="color:white; font-size:20px; font-family:Arial, Helvetica, sans-serif; display:none;">
+        Your score wasn't enough to complete level. <br />
+        Press [Enter] to continue.
+      </p>
     </div>
     <script style="margin:0px; padding:0px;" src="./build/stack-overflow.js"></script>
   </body>

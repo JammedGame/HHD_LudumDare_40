@@ -5,6 +5,7 @@ import * as Three from 'Three';
 import { Box } from "./Box";
 import { Crane } from "./Crane";
 import { Level } from "./../Levels/Level";
+import { Messages } from "./../UI/Messages";
 import { CollisionManager } from "./../CollisionManager";
 
 class BoxManager
@@ -18,6 +19,7 @@ class BoxManager
     private _Crane:Crane;
     private _Level:Level;
     private _Scene:Three.Scene;
+    private _Messages:Messages;
     private _Collision:CollisionManager;
     public get Finished():boolean { return this._Finished; }
     public constructor(Scene:Three.Scene, Level:Level, Collision:CollisionManager)
@@ -25,6 +27,7 @@ class BoxManager
         this._Scene = Scene;
         this._Level = Level;
         this._Collision = Collision;
+        this._Messages = new Messages(Level);
         this.Init();
     }
     public Init() : void
@@ -45,9 +48,11 @@ class BoxManager
     public SetLevel(Level:Level) : void
     {
         this._Level = Level;
+        this._Messages.SetLevel(Level);
     }
     public Reset() : void
     {
+        this._Messages.Hide();
         for(let i in this._Boxes)
         {
             this._Boxes[i].Destroy();
@@ -93,6 +98,7 @@ class BoxManager
                 this._Finished = true;
                 this.UpdateCarriedBoxes();
                 this._Level.Score += this.CalculateScore();
+                this._Messages.Show();
             }
         }
         else
