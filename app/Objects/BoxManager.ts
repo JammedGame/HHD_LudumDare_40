@@ -51,7 +51,7 @@ class BoxManager
         this._Display.Update();
         this._Boxes.push(this._BaseBox);
         this._CarriedBoxes.push(this._BaseBox);
-        this._Crane = new Crane();
+        this._Crane = new Crane(this._Scene);
         this._Crane.Speed = this._Level.CraneSpeed;
         this._Crane.Limit = this._Level.CraneLimit;
     }
