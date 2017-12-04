@@ -61,6 +61,7 @@ class SceneManager
         if(this._Keyboard.Reset) 
         { 
             this._Keyboard.Reset = false;
+            this._LevelManager.Level.Reset();
             this.Reset(); 
         }
         if(this._Keyboard.Continue) 

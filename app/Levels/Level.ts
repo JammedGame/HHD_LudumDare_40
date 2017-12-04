@@ -12,6 +12,7 @@ class Level
     private _CraneSpeed:number;
     private _CraneLimit:number;
     private _BoxTypes:any[];
+    private _NowBoxTypes:any[];
     public get Pass():number { return this._Pass; }
     public set Pass(value) { this._Pass = value; }
     public get Score():number { return this._Score; }
@@ -24,10 +25,9 @@ class Level
     public get CraneSpeed():number { return this._CraneSpeed; }
     public get CraneLimit():number { return this._CraneLimit; }
     public get BoxTypes():any[] { return this._BoxTypes; }
+    public get NowBoxTypes():any[] { return this._NowBoxTypes; }
     public constructor(LevelObject:any)
     {
-        this._Pass = 1;
-        this._Score = 0;
         this._Passes = LevelObject.Passes;
         this._Number = LevelObject.Index + 1;
         this._BronzeScore = LevelObject.BronzeScore;
@@ -36,10 +36,16 @@ class Level
         this._CraneSpeed = LevelObject.CraneSpeed;
         this._CraneLimit = LevelObject.CraneLimit;
         this._BoxTypes = LevelObject.BoxTypes;
+        this._NowBoxTypes = [];
+        this.Reset();
     }
     public Reset() : void
     {
         this._Pass = 1;
         this._Score = 0;
+        for(let i = 0; i < this._BoxTypes.length; i++)
+        {
+            this._NowBoxTypes.push({Type:this._BoxTypes[i].Type, Amount:this._BoxTypes[i].Amount});
+        }
     }
 }

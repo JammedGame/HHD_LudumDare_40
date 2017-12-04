@@ -15,11 +15,11 @@ let Levels =
         [
             {
                 Type: "Cardboard",
-                Ammount: 2
+                Amount: 2
             },
             {
                 Type: "Wooden",
-                Ammount: 10
+                Amount: 10
             }
         ]
     },
@@ -36,7 +36,7 @@ let Levels =
         [
             {
                 Type: "Cardboard",
-                Ammount: 10
+                Amount: 10
             }
         ]
     }

@@ -15,7 +15,6 @@ class BoxFactory
     }
     public Generate(Type:string, Position?:any, Static?:boolean) : Box
     {
-        console.log(Type);
         let NewBox;
         if(Type == "Cardboard")
         {

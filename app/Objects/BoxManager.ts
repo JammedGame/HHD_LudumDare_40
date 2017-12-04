@@ -81,16 +81,17 @@ class BoxManager
         if(!this._Crane.Box && (!this._ReleasedBox || this._ReleasedBox.Position.y < 500))
         {
             this._Crane.Box = this.GetNewCraneBox();
-            this._Boxes.push(this._Crane.Box);
+            if(this._Crane.Box != null) this._Boxes.push(this._Crane.Box);
         }
         this._Scene.position.x = -this._BaseBox.Position.x;
     }
     private GetNewCraneBox() : Box
     {
-        while(this._Level.BoxTypes[this._BoxType].Ammount = 0)
+        if(this._BoxType == -1) return;
+        while(this._Level.NowBoxTypes[this._BoxType].Amount == 0)
         {
             this._BoxType++;
-            if(this._BoxType >= this._Level.BoxTypes.length)
+            if(this._BoxType >= this._Level.NowBoxTypes.length)
             {
                 this._BoxType = -1;
                 break;
@@ -98,13 +99,17 @@ class BoxManager
         }
         if(this._BoxType == -1)
         {
-            for(let i = 0; i < this._Level.BoxTypes.length; i++)
+            for(let i = 0; i < this._Level.NowBoxTypes.length; i++)
             {
-                if(this._Level.BoxTypes[i].Ammount != 0) this._BoxType = i;
+                if(this._Level.NowBoxTypes[i].Amount != 0) this._BoxType = i;
             }
         }
         if(this._BoxType == -1) return null;
-        else return this._Factory.Generate(this._Level.BoxTypes[this._BoxType].Type, null, true);
+        else
+        {
+            this._Level.NowBoxTypes[this._BoxType].Amount -= 1;
+            return this._Factory.Generate(this._Level.NowBoxTypes[this._BoxType].Type, null, true);
+        }
     }
     public ReleaseBox() : void
     {
