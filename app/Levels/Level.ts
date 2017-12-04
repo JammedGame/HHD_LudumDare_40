@@ -43,6 +43,7 @@ class Level
     {
         this._Pass = 1;
         this._Score = 0;
+        this._NowBoxTypes = [];
         for(let i = 0; i < this._BoxTypes.length; i++)
         {
             this._NowBoxTypes.push({Type:this._BoxTypes[i].Type, Amount:this._BoxTypes[i].Amount});
