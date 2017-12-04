@@ -26,7 +26,7 @@ class SceneManager
         this._Renderer = new Renderer({X:1920, Y:1080});
         let Env = new Environment(this._Renderer.Scene);
         this._CollisionManager = new CollisionManager();
-        this._Char = new Character(this._Renderer.Scene);
+        this._Char = new Character(this._Renderer.Scene, this._CollisionManager.Engine);
         let Truc = new Truck(this._Renderer.Scene, this._CollisionManager.Engine);
         this._LevelManager = new LevelManager();
         this._BoxManager = new BoxManager(this._Renderer.Scene, this._CollisionManager.Engine, this._LevelManager.Level, this._CollisionManager, this._Char);

@@ -1,6 +1,7 @@
 export { Character }
 
 import * as Three from 'Three';
+import * as Matter from 'matter-js';
 import * as OBJLoader from "three-obj-loader";
 OBJLoader(Three);
 
@@ -17,11 +18,14 @@ class Character
     private _Mixer:any;
     private static Geometry:any;
     private Scene:Three.Scene;
+    private _Engine:any;
+    private _Collider:any;
     public get Mixer():any { return this._Mixer; }
-    public constructor(Scene:Three.Scene)
+    public constructor(Scene:Three.Scene, Engine:any)
     {
         this._Loaded = false;
         this.Scene = Scene;
+        this._Engine = Engine;
         if(Character.Textures == null) Character.LoadTextures();
         if(!Character.Geometry) this.LoadGeometry1();
         else
@@ -83,6 +87,12 @@ class Character
         this._Moonwalk.play();
 
         this._Loaded = true;
+        this.CreateCollider();
+    }
+    private CreateCollider() : void
+    {
+        this._Collider = Matter.Bodies.rectangle(-110, -250, 30, 200, { isStatic: true });
+        Matter.World.add(this._Engine.world, [this._Collider]);
     }
     public SetAction(Action:string)
     {
@@ -98,6 +108,7 @@ class Character
     {
         if(!this._Loaded) return;
         this._Mesh.position.x += Vector.X;
+        Matter.Body.translate(this._Collider, {x:Vector.X, y:0});
     }
     public Reset() : void
     {
