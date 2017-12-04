@@ -179,6 +179,7 @@ class BoxManager
         for(let i in this._CarriedBoxes)
         {
             Score += this._CarriedBoxes[i].Score;
+            this._CarriedBoxes[i].Score;
         }
         return Score;
     }
