@@ -34,7 +34,6 @@ class Keyboard
     }
     public KeyDown(event)
     {
-        console.log(event.keyCode);
         if(event.keyCode == 32)
         {
             this._SpaceDown = true;

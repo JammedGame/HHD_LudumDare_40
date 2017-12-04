@@ -91,7 +91,7 @@ class BoxManager
         }
         this._Scene.position.x = -this._BaseBox.Position.x;
     }
-    private Switch()
+    public Switch()
     {
         if(this._Crane.Box)
         {

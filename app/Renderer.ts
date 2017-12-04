@@ -26,7 +26,9 @@ class Renderer
         this._AmbientLight = new Three.AmbientLight( 0x404040 );
         this._Scene.add( this._AmbientLight );
         this._Target = document.getElementById("canvas") as HTMLCanvasElement;
+        window.addEventListener("resize", this.Resize.bind(this));
         this._Parent = document.getElementById("canvas-parent") as HTMLCanvasElement;
+        //this._Parent.addEventListener("resize", this.Resize.bind(this));
         this._Camera = new Three.PerspectiveCamera( 45, Resolution.X / Resolution.Y, 1, 10000 );
 	    this._Camera.position.z = 1500;
         this._Camera.position.y = 500;
@@ -43,6 +45,7 @@ class Renderer
     }
     public Resize() : void
     {
+        console.log("?");
         let Width:number = this._Parent.clientWidth;
         let Height:number = this._Parent.clientHeight;
         this._Renderer.setSize( Width, Height );
