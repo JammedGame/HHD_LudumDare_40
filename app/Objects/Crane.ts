@@ -6,6 +6,7 @@ import * as Three from 'Three';
 
 class Crane
 {
+    private static Mesh:any;
     private static Geometry:any;
     private _Direction:number;
     private _Speed:number;
@@ -27,7 +28,11 @@ class Crane
         this._Limit = 100;
         this._Scene = Scene;
         if(Crane.Textures == null) Crane.LoadTextures();
-        if(!Crane.Geometry) this.LoadGeometry();
+        if(!Crane.Mesh)
+        {
+            this.LoadGeometry();
+        }
+        else this._Mesh = Crane.Mesh;
     }
     private LoadGeometry() : void
     {
@@ -38,6 +43,7 @@ class Crane
     {
         geometry.uvsNeedUpdate = true;
         this._Mesh = new Three.Mesh( geometry, new Three.MeshLambertMaterial( { color: 0xffffff, map:Crane.Textures[0] }));
+        Crane.Mesh = this._Mesh;
         this._Mesh.rotation.y = -Math.PI / 2;
         this._Mesh.scale.set(90,50,50);
         this._Mesh.position.set(0,740,0);
