@@ -52,7 +52,6 @@ class Renderer
     }
     public Resize() : void
     {
-        console.log("?");
         let Width:number = this._Parent.clientWidth;
         let Height:number = this._Parent.clientHeight;
         this._Renderer.setSize( Width, Height );
