@@ -14,6 +14,7 @@ import { Truck } from "./Truck";
 
 class SceneManager
 {
+    private _Char:Character;
     private _Keyboard:Keyboard;
     private _Renderer:Renderer;
     private _BoxManager:BoxManager;
@@ -25,7 +26,7 @@ class SceneManager
         this._Renderer = new Renderer({X:1920, Y:1080});
         let Env = new Environment(this._Renderer.Scene);
         this._CollisionManager = new CollisionManager();
-        let Char = new Character(this._Renderer.Scene);
+        this._Char = new Character(this._Renderer.Scene);
         let Truc = new Truck(this._Renderer.Scene, this._CollisionManager.Engine);
         this._LevelManager = new LevelManager();
         this._BoxManager = new BoxManager(this._Renderer.Scene, this._CollisionManager.Engine, this._LevelManager.Level, this._CollisionManager);
@@ -41,6 +42,7 @@ class SceneManager
     }
     private Update() : void
     {
+        this._Renderer.SetMixer(this._Char.Mixer);
         this._LevelManager.Update();
         if(this._Keyboard.Space) 
         { 

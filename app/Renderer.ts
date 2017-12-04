@@ -4,6 +4,8 @@ import * as Three from 'Three';
 
 class Renderer
 {
+    private _Clock:Three.Clock;
+    private _Mixer:any;
     private _Scene:Three.Scene;
     private _Camera:Three.Camera;
     private _Target:HTMLCanvasElement;
@@ -21,6 +23,7 @@ class Renderer
     }
     public Init(Resolution:any)
     {
+        this._Clock = new Three.Clock();
         this._Scene = new Three.Scene();
         this._Scene.background = new Three.Color(255,255,255);
         this._AmbientLight = new Three.AmbientLight( 0x404040 );
@@ -39,6 +42,10 @@ class Renderer
         this.Resize();
         window.requestAnimationFrame(this.Draw.bind(this));
     }
+    public SetMixer(Mixer)
+    {
+        this._Mixer = Mixer;
+    }
     public Reset() : void
     {
         this._Scene.position.set(0,0,0);
@@ -55,6 +62,13 @@ class Renderer
         for(let i in this._OnRender)
         {
             this._OnRender[i]();
+        }
+        let Delta = this._Clock.getDelta();
+        //console.log(Delta);
+        if(this._Mixer)
+        {
+            //console.log(this._Mixer._actions[0].time);
+            this._Mixer.update( Delta );
         }
         this._Renderer.render( this._Scene, this._Camera );
         window.requestAnimationFrame(this.Draw.bind(this));

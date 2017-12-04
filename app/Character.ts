@@ -6,8 +6,10 @@ OBJLoader(Three);
 
 class Character
 {
+    private _Mixer:any;
     private static Geometry:any;
     private Scene:Three.Scene;
+    public get Mixer():any { return this._Mixer; }
     public constructor(Scene:Three.Scene)
     {
         this.Scene = Scene;
@@ -21,19 +23,24 @@ class Character
     private LoadGeometry() : void
     {
         var Loader = new Three.JSONLoader();
-        Loader.load( 'build/resources/Stacker1.json', this.LoadFinished.bind(this));
+        Loader.load( 'build/resources/untitled.json', this.LoadFinished.bind(this));
     }
     private LoadFinished(geometry, materials) : void
     {
         geometry.uvsNeedUpdate = true;
-        let Mesh = new Three.Mesh( geometry, new Three.MeshLambertMaterial( { color: 0xffffff, map:Character.Textures[0] }));
+        let Mesh = new Three.SkinnedMesh( geometry, new Three.MeshLambertMaterial( { color: 0xffffff, map:Character.Textures[0] }));
         Mesh.scale.set(100,100,100);
         Mesh.rotation.y = Math.PI / 2;
         Mesh.position.x = -100;
-        Mesh.position.y = 30;
-        
-        console.log(Mesh);
+        Mesh.position.y = 0;
+
         this.Scene.add(Mesh);
+
+        let clip = Three.AnimationClip.findByName( Mesh.geometry.animations, 'Armature|Main|Layer0' );
+        let AM = new Three.AnimationMixer(Mesh);
+        this._Mixer = AM;
+        let AA = AM.clipAction(clip);
+        AA.play();
     }
     public static Textures:any[];
     public static LoadTextures()
