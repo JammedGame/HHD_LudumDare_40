@@ -28,6 +28,7 @@ class LevelManager
             if(this._Level.Score >= this._Level.BronzeScore)
             {
                 this._Index++;
+                if(this._Index >= Levels.length) this._Index = 0;
                 this._Level = new Level(Levels[this._Index]);
                 this._HUD.SetLevel(this._Level);
             }
