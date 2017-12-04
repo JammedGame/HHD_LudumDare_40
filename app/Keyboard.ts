@@ -6,12 +6,15 @@ class Keyboard
     private _RightDown:boolean;
     private _SpaceDown:boolean;
     private _ResetDown:boolean;
+    private _SwitchDown:boolean;
     private _ContinueDown:boolean;
     public get Left():boolean { return this._LeftDown; }
     public get Right():boolean { return this._RightDown; }
     public get Space():boolean { return this._SpaceDown; }
     public get Reset():boolean { return this._ResetDown; }
     public set Reset(value) { this._ResetDown = value; }
+    public get Switch():boolean { return this._SwitchDown; }
+    public set Switch(value) { this._SwitchDown = value; }
     public get Continue():boolean { return this._ContinueDown; }
     public set Continue(value) { this._ContinueDown = value; }
     public constructor()
@@ -24,12 +27,14 @@ class Keyboard
         this._RightDown = false;
         this._SpaceDown = false;
         this._ResetDown = false;
+        this._SwitchDown = false;
         this._ContinueDown = false;
         document.addEventListener("keydown", this.KeyDown.bind(this)); 
         document.addEventListener("keyup", this.KeyUp.bind(this)); 
     }
     public KeyDown(event)
     {
+        console.log(event.keyCode);
         if(event.keyCode == 32)
         {
             this._SpaceDown = true;
@@ -50,6 +55,10 @@ class Keyboard
         {
             this._ContinueDown = true;
         }
+        if(event.keyCode == 65)
+        {
+            this._SwitchDown = true;
+        }
     }
     public KeyUp(event)
     {
@@ -69,6 +78,10 @@ class Keyboard
         if(event.keyCode == 13)
         {
             this._ContinueDown = false;
+        }
+        if(event.keyCode == 65)
+        {
+            this._SwitchDown = false;
         }
     }
 }

@@ -1,0 +1,59 @@
+export { BoxTypeDisplay }
+
+import { Level } from "./../Levels/Level";
+
+const BOX_TYPE_DISPLAYS_AMOUNT = 3;
+
+class BoxTypeDisplay
+{
+    private static TextureUrls = ["build/resources/box0.png", "build/resources/box1.png", "build/resources/box2.png"];
+    private _Level:Level;
+    private _BoxDivs:HTMLElement[];
+    private _BoxImgs:HTMLImageElement[];
+    private _BoxTexts:HTMLElement[];
+    public constructor(Level:Level)
+    {
+        this._Level = Level;
+        this._BoxDivs = [];
+        this._BoxImgs = [];
+        this._BoxTexts = [];
+        for(let i = 1; i < BOX_TYPE_DISPLAYS_AMOUNT + 1; i++)
+        {
+            this._BoxDivs.push(document.getElementById("ui-elements-box-"+i));
+            this._BoxImgs.push(<HTMLImageElement>document.getElementById("ui-elements-box-"+i+"-img"));
+            this._BoxTexts.push(document.getElementById("ui-elements-box-"+i+"-text"));
+        }
+        this.HardUpdate();
+    }
+    public SetLevel(Level:Level) : void
+    {
+        this._Level = Level;
+    }
+    public Update() : void
+    {
+        for(let i = 0; i < this._Level.NowBoxTypes.length && i < BOX_TYPE_DISPLAYS_AMOUNT; i++)
+        {
+            this._BoxTexts[i].innerHTML = this._Level.NowBoxTypes[i].Amount;
+        }
+    }
+    private HardUpdate() : void
+    {
+        for(let i = 0; i < BOX_TYPE_DISPLAYS_AMOUNT; i++)
+        {
+            this._BoxDivs[i].style.display = "none";
+        }
+        for(let i = 0; i < this._Level.NowBoxTypes.length && i < BOX_TYPE_DISPLAYS_AMOUNT; i++)
+        {
+            this._BoxDivs[i].style.display = "block";
+            this._BoxImgs[i].src = BoxTypeDisplay.TextureUrls[this.BoxTypeToIndex(this._Level.NowBoxTypes[i].Type)];
+            this._BoxTexts[i].innerHTML = this._Level.NowBoxTypes[i].Amount;
+        }
+    }
+    private BoxTypeToIndex(Type:string) : number
+    {
+        if(Type == "Cardboard") return 0;
+        if(Type == "Wooden") return 1;
+        if(Type == "Metal") return 2;
+        return -1;
+    }
+}

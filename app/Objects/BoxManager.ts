@@ -7,6 +7,7 @@ import { Crane } from "./Crane";
 import { Level } from "./../Levels/Level";
 import { Messages } from "./../UI/Messages";
 import { BoxFactory } from "./BoxFactory";
+import { BoxTypeDisplay } from "./../UI/BoxTypeDisplay";
 import { CollisionManager } from "./../CollisionManager";
 
 class BoxManager
@@ -22,6 +23,7 @@ class BoxManager
     private _Level:Level;
     private _Scene:Three.Scene;
     private _Messages:Messages;
+    private _Display:BoxTypeDisplay;
     private _Collision:CollisionManager;
     private _Factory:BoxFactory;
     public get Finished():boolean { return this._Finished; }
@@ -31,6 +33,7 @@ class BoxManager
         this._Level = Level;
         this._Collision = Collision;
         this._Messages = new Messages(Level);
+        this._Display = new BoxTypeDisplay(Level);
         this._Factory = new BoxFactory(Scene, Engine);
         this.Init();
     }
@@ -41,7 +44,9 @@ class BoxManager
         this._Velocity = 0;
         this._Boxes = [];
         this._CarriedBoxes = [];
-        this._BaseBox = new Box(this._Scene, 0, this._Collision.Engine, {X:0, Y:200, Z:0}, null, true);
+        this._BaseBox = this.GetNewCraneBox();
+        this._BaseBox.Move({x:0, y:-200});
+        this._Display.Update();
         this._Boxes.push(this._BaseBox);
         this._CarriedBoxes.push(this._BaseBox);
         this._Crane = new Crane();
@@ -51,6 +56,7 @@ class BoxManager
     public SetLevel(Level:Level) : void
     {
         this._Level = Level;
+        this._Display.SetLevel(Level);
         this._Messages.SetLevel(Level);
     }
     public Reset() : void
@@ -85,6 +91,21 @@ class BoxManager
         }
         this._Scene.position.x = -this._BaseBox.Position.x;
     }
+    private Switch()
+    {
+        if(this._Crane.Box)
+        {
+            let OldBox = this._Crane.Box;
+            this._Crane.Box = null;
+            this._Boxes.splice(this._Boxes.indexOf(OldBox), 1);
+            OldBox.Destroy();
+            this._Level.NowBoxTypes[this._BoxType].Amount += 1;
+            this._BoxType++;
+            if(this._BoxType >= this._Level.NowBoxTypes.length) this._BoxType = 0;
+            this._Crane.Box = this.GetNewCraneBox();
+            if(this._Crane.Box != null) this._Boxes.push(this._Crane.Box);
+        }
+    }
     private GetNewCraneBox() : Box
     {
         if(this._BoxType == -1) return;
@@ -108,6 +129,7 @@ class BoxManager
         else
         {
             this._Level.NowBoxTypes[this._BoxType].Amount -= 1;
+            this._Display.Update();
             return this._Factory.Generate(this._Level.NowBoxTypes[this._BoxType].Type, null, true);
         }
     }

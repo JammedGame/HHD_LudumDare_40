@@ -62,7 +62,7 @@ class SceneManager
         { 
             this._Keyboard.Reset = false;
             this._LevelManager.Level.Reset();
-            this.Reset(); 
+            this.Reset();
         }
         if(this._Keyboard.Continue) 
         { 
@@ -70,6 +70,11 @@ class SceneManager
             this._LevelManager.Next();
             this._BoxManager.SetLevel(this._LevelManager.Level);
             this.Reset(); 
+        }
+        if(this._Keyboard.Switch)
+        {
+            this._Keyboard.Switch = false;
+            this._BoxManager.Switch();
         }
     }
 }
