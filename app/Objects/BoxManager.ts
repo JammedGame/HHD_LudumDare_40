@@ -9,6 +9,7 @@ import { CollisionManager } from "./../CollisionManager";
 
 class BoxManager
 {
+    private _Finished:boolean;
     private _Velocity:number;
     private _BaseBox:Box;
     private _ReleasedBox:Box;
@@ -18,6 +19,7 @@ class BoxManager
     private _Level:Level;
     private _Scene:Three.Scene;
     private _Collision:CollisionManager;
+    public get Finished():boolean { return this._Finished; }
     public constructor(Scene:Three.Scene, Level:Level, Collision:CollisionManager)
     {
         this._Scene = Scene;
@@ -27,6 +29,7 @@ class BoxManager
     }
     public Init() : void
     {
+        this._Finished = false;
         this._Velocity = 0;
         this._Boxes = [];
         this._CarriedBoxes = [];
@@ -81,8 +84,12 @@ class BoxManager
     {
         if(this._BaseBox.Position.x > 3000)
         {
-            this.UpdateCarriedBoxes();
-            console.log("Truck!");
+            if(!this._Finished)
+            {
+                this._Finished = true;
+                this.UpdateCarriedBoxes();
+                this._Level.Score += this.CalculateScore();
+            }
         }
         else
         {
@@ -103,5 +110,14 @@ class BoxManager
                 this._CarriedBoxes.splice(this._CarriedBoxes.indexOf(this._CarriedBoxes[i]), 1);
             }
         }
+    }
+    private CalculateScore() : number
+    {
+        let Score = 0;
+        for(let i in this._CarriedBoxes)
+        {
+            Score += this._CarriedBoxes[i].Score;
+        }
+        return Score;
     }
 }

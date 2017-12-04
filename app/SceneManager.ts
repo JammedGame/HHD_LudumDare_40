@@ -39,6 +39,7 @@ class SceneManager
     }
     private Update() : void
     {
+        this._LevelManager.Update();
         if(this._Keyboard.Space) 
         { 
             this._BoxManager.ReleaseBox(); 
@@ -58,6 +59,12 @@ class SceneManager
         if(this._Keyboard.Reset) 
         { 
             this._Keyboard.Reset = false;
+            this.Reset(); 
+        }
+        if(this._Keyboard.Continue) 
+        { 
+            this._Keyboard.Continue = false;
+            this._LevelManager.Next();
             this.Reset(); 
         }
     }

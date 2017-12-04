@@ -37,4 +37,9 @@ class Level
         this._CraneLimit = LevelObject.CraneLimit;
         this._BoxTypes = LevelObject.BoxTypes;
     }
+    public Reset() : void
+    {
+        this._Pass = 1;
+        this._Score = 0;
+    }
 }
