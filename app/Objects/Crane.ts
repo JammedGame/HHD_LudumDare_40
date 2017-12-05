@@ -53,7 +53,7 @@ class Crane
     {
         if(Box != null)
         {
-            Box.Move({x:0, y:-800});
+            Box.Move({x:0, y:-1100});
             if(this._Mesh) this._Mesh.position.x = 0;
         }
         this._Box = Box;

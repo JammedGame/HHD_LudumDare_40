@@ -48,7 +48,7 @@ class BoxManager
         this._Boxes = [];
         this._CarriedBoxes = [];
         this._BaseBox = this.GetNewCraneBox();
-        this._BaseBox.Move({x:0, y:-200});
+        this._BaseBox.Move({x:0, y:-500});
         this._Display.Update();
         this._Boxes.push(this._BaseBox);
         this._CarriedBoxes.push(this._BaseBox);
@@ -134,7 +134,7 @@ class BoxManager
         {
             this._Level.NowBoxTypes[this._BoxType].Amount -= 1;
             this._Display.Update();
-            return this._Factory.Generate(this._Level.NowBoxTypes[this._BoxType].Type, null, true);
+            return this._Factory.Generate(this._Level.NowBoxTypes[this._BoxType].Type, {X:0, Y:-300, Z:0}, true);
         }
     }
     public ReleaseBox() : void
