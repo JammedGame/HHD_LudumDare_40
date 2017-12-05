@@ -23,7 +23,7 @@ class LevelManager
     }
     public Next() : void
     {
-        if(this._Level.Pass == this._Level.Passes)
+        if(this._Level.Pass == this._Level.Passes || !this.CheckIfBoxes())
         {
             if(this._Level.Score >= this._Level.BronzeScore)
             {
@@ -42,5 +42,14 @@ class LevelManager
         {
             this._Level.Pass += 1;
         }
+    }
+    private CheckIfBoxes()
+    {
+        let BoxCount = 0;
+        for(let i = 0; i < this._Level.NowBoxTypes.length; i++)
+        {
+            BoxCount += this._Level.NowBoxTypes[i].Amount;
+        }
+        return BoxCount != 0;
     }
 }

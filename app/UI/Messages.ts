@@ -21,7 +21,7 @@ class Messages
     }
     public Show() : void
     {
-        if(this._Level.Pass == this._Level.Passes)
+        if(this._Level.Pass == this._Level.Passes || !this.CheckIfBoxes())
         {
             if(this._Level.Score >= this._Level.BronzeScore)
             {
@@ -42,5 +42,14 @@ class Messages
         this._MSGLevel.style.display = "none";
         this._MSGFail.style.display = "none";
         this._MSGPass.style.display = "none";
+    }
+    private CheckIfBoxes()
+    {
+        let BoxCount = 0;
+        for(let i = 0; i < this._Level.NowBoxTypes.length; i++)
+        {
+            BoxCount += this._Level.NowBoxTypes[i].Amount;
+        }
+        return BoxCount != 0;
     }
 }
