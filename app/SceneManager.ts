@@ -89,5 +89,15 @@ class SceneManager
             this._Keyboard.Switch = false;
             this._BoxManager.Switch();
         }
+        if(this._Keyboard.Help)
+        {
+            let Help = document.getElementById("help");
+            Help.style.display = "block";
+        }
+        else
+        {
+            let Help = document.getElementById("help");
+            Help.style.display = "none";
+        }
     }
 }

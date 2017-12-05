@@ -2,12 +2,14 @@ export { Keyboard }
 
 class Keyboard
 {
+    private _HelpDown:boolean;
     private _LeftDown:boolean;
     private _RightDown:boolean;
     private _SpaceDown:boolean;
     private _ResetDown:boolean;
     private _SwitchDown:boolean;
     private _ContinueDown:boolean;
+    public get Help():boolean { return this._HelpDown; }
     public get Left():boolean { return this._LeftDown; }
     public get Right():boolean { return this._RightDown; }
     public get Space():boolean { return this._SpaceDown; }
@@ -23,6 +25,7 @@ class Keyboard
     }
     public Init() : void
     {
+        this._HelpDown = false;
         this._LeftDown = false;
         this._RightDown = false;
         this._SpaceDown = false;
@@ -58,6 +61,10 @@ class Keyboard
         {
             this._SwitchDown = true;
         }
+        if(event.keyCode == 72)
+        {
+            this._HelpDown = true;
+        }
     }
     public KeyUp(event)
     {
@@ -81,6 +88,10 @@ class Keyboard
         if(event.keyCode == 65)
         {
             this._SwitchDown = false;
+        }
+        if(event.keyCode == 72)
+        {
+            this._HelpDown = false;
         }
     }
 }
