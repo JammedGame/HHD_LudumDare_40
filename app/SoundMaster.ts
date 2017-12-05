@@ -34,6 +34,33 @@ class SoundMaster
             }
         )
 
+        this._CardboardBoxFall = new Howler.Howl(
+            {
+                src:"./build/resources/cardboard.wav",
+                autoplay:false,
+                loop:false,
+                volume:1.0,
+            }
+        )
+
+        this._WoodenBoxFall = new Howler.Howl(
+            {
+                src:"./build/resources/wooden.wav",
+                autoplay:false,
+                loop:false,
+                volume:1.0,
+            }
+        )
+
+        this._MetalBoxFall = new Howler.Howl(
+            {
+                src:"./build/resources/metal.wav",
+                autoplay:false,
+                loop:false,
+                volume:1.0,
+            }
+        )
+
         this._Music.play();
 
         SoundMaster.Single = this;
@@ -43,6 +70,18 @@ class SoundMaster
         if(Track == "Walk")
         {
             if(!this._Walk.playing()) this._Walk.play();
+        }
+        else if(Track == "Cardboard")
+        {
+            this._CardboardBoxFall.play();
+        }
+        else if(Track == "Wooden")
+        {
+            this._WoodenBoxFall.play();
+        }
+        else if(Track == "Metal")
+        {
+            this._MetalBoxFall.play();
         }
     }
     public Stop(Track:string)

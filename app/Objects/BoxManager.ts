@@ -91,6 +91,7 @@ class BoxManager
             this._Crane.Box = this.GetNewCraneBox();
             if(this._Crane.Box != null) this._Boxes.push(this._Crane.Box);
         }
+        this.UpdateCarriedBoxes();
         this._Scene.position.x = -this._BaseBox.Position.x;
     }
     public Switch()
@@ -150,7 +151,6 @@ class BoxManager
             if(!this._Finished)
             {
                 this._Finished = true;
-                this.UpdateCarriedBoxes();
                 this._Level.Score += this.CalculateScore();
                 this._Messages.Show();
             }
@@ -168,11 +168,12 @@ class BoxManager
     }
     private UpdateCarriedBoxes() : void
     {
-        for(let i in this._CarriedBoxes)
+        for(let i = this._CarriedBoxes.length - 1; i >= 0; i--)
         {
-            if(this._CarriedBoxes[i].Position.y < 200)
+            if(this._CarriedBoxes[i].Position.y < 120)
             {
-                this._CarriedBoxes.splice(this._CarriedBoxes.indexOf(this._CarriedBoxes[i]), 1);
+                this._CarriedBoxes[i].PlayFall();
+                this._CarriedBoxes.splice(i, 1);
             }
         }
     }
