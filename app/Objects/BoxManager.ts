@@ -170,7 +170,7 @@ class BoxManager
     {
         for(let i = this._CarriedBoxes.length - 1; i >= 0; i--)
         {
-            if(this._CarriedBoxes[i].Position.y < 120)
+            if(this._CarriedBoxes[i].Position.y < 120 || Math.abs(this._CarriedBoxes[i].Position.x + this._Scene.position.x) > 300)
             {
                 this._CarriedBoxes[i].PlayFall();
                 this._CarriedBoxes.splice(i, 1);
