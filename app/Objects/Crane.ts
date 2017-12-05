@@ -32,7 +32,11 @@ class Crane
         {
             this.LoadGeometry();
         }
-        else this._Mesh = Crane.Mesh;
+        else
+        {
+            this._Mesh = Crane.Mesh;
+            this._Mesh.position.x = 0;
+        }
     }
     private LoadGeometry() : void
     {
@@ -58,11 +62,12 @@ class Crane
             //if(this._Mesh) this._Mesh.position.x = 0;
         }
         this._Box = Box;
-        this.Reset();
+        //this.Reset();
     }
     private Reset() : void
     {
-        //this._Move = 0;
+        this._Move = 0;
+        this._Mesh.position.x = 0;
     }
     public Update() : void
     {
