@@ -2,11 +2,11 @@ export { Levels }
 
 let Levels = 
 [ 
-    /*
+    
     // Level 1
     {
         Index: 0,
-        Passes: 3,
+        Passes: 2,
         BronzeScore: 500,
         SilverScore: 750,
         GoldScore: 1000,
@@ -24,7 +24,7 @@ let Levels =
     // Level 2
     {
         Index: 1,
-        Passes: 3,
+        Passes: 2,
         BronzeScore: 750,
         SilverScore: 1500,
         GoldScore: 2000,
@@ -60,7 +60,7 @@ let Levels =
             },
             {
                 Type: "Wooden",
-                Amount: 10
+                Amount: 8
             },
             {
                 Type: "Metal",
@@ -86,11 +86,11 @@ let Levels =
             },
             {
                 Type: "Wooden",
-                Amount: 12
+                Amount: 8
             },
             {
                 Type: "Metal",
-                Amount: 8
+                Amount: 6
             }
         ]
     },
@@ -112,11 +112,11 @@ let Levels =
             },
             {
                 Type: "Wooden",
-                Amount: 4
+                Amount: 2
             },
             {
                 Type: "Metal",
-                Amount: 15
+                Amount: 10
             }
         ]
     },
@@ -139,23 +139,23 @@ let Levels =
             {
                 Type: "Wooden",
                 Amount: 1
-            },
+            },            
             {
                 Type: "Metal",
                 Amount: 3
             },
             {
-                Type: "Large Metal",
-                Amount: 4
-            },
+                Type: "Large Cardboard",
+                Amount: 2
+            },            
             {
                 Type: "Large Wooden",
                 Amount: 3
             },
             {
-                Type: "Large Cardboard",
-                Amount: 2
-            }
+                Type: "Large Metal",
+                Amount: 4
+            }            
         ]
     },
 
@@ -172,27 +172,27 @@ let Levels =
         [
             {
                 Type: "Metal",
-                Amount: 12
-            },
-            {
-                Type: "Large Metal",
-                Amount: 8
-            },
-            {
-                Type: "Large Wooden",
-                Amount: 6
+                Amount: 11
             },
             {
                 Type: "Large Cardboard",
                 Amount: 4
-            }
+            },            
+            {
+                Type: "Large Wooden",
+                Amount: 5
+            },    
+            {
+                Type: "Large Metal",
+                Amount: 6
+            }       
         ]
     },
 
     // Level 8
     {
         Index: 7,
-        Passes: 5,
+        Passes: 4,
         BronzeScore: 5500,
         SilverScore: 6700,
         GoldScore: 8000,
@@ -202,7 +202,7 @@ let Levels =
         [
             {
                 Type: "Cardboard",
-                Amount: 12
+                Amount: 10
             },
             {
                 Type: "Wooden",
@@ -213,16 +213,16 @@ let Levels =
                 Amount: 3
             },
             {
-                Type: "Large Metal",
-                Amount: 8
-            },
-            {
-                Type: "Large Wooden",
-                Amount: 6
-            },
-            {
                 Type: "Large Cardboard",
                 Amount: 4
+            },            
+            {
+                Type: "Large Wooden",
+                Amount: 5
+            },            
+            {
+                Type: "Large Metal",
+                Amount: 6
             }
         ]
     },
@@ -240,11 +240,11 @@ let Levels =
         [
             {
                 Type: "Cardboard",
-                Amount: 6
+                Amount: 3
             },
             {
                 Type: "Wooden",
-                Amount: 4
+                Amount: 3
             },
             {
                 Type: "Metal",
@@ -252,7 +252,7 @@ let Levels =
             },
             {
                 Type: "Large Metal",
-                Amount: 13
+                Amount: 10
             }
         ]
     },
@@ -278,16 +278,16 @@ let Levels =
             },
             {
                 Type: "Metal",
-                Amount: 6
+                Amount: 4
             },
             {
-                Type: "Large Metal",
-                Amount: 13
+                Type: "Large Wooden",
+                Amount: 9
             },
 
             {
                 Type: "Large Metal",
-                Amount: 13
+                Amount: 9
             }
         ]
     },
@@ -299,13 +299,13 @@ let Levels =
         BronzeScore: 9100,
         SilverScore: 10400,
         GoldScore: 11000,
-        CraneSpeed: 30,
+        CraneSpeed: 22,
         CraneLimit: 500,
         BoxTypes:
         [
             {
                 Type: "Metal",
-                Amount: 6
+                Amount: 15
             },
             {
                 Type: "Large Metal",
@@ -327,7 +327,7 @@ let Levels =
         [
             {
                 Type: "Wooden",
-                Amount: 4
+                Amount: 5
             },
             {
                 Type: "Metal",
@@ -387,11 +387,11 @@ let Levels =
         [
             {
                 Type: "Cardboard",
-                Amount: 5
+                Amount: 12
             },
             {
                 Type: "Metal",
-                Amount: 5
+                Amount: 11
             },
             {
                 Type: "Large Cardboard",
@@ -407,7 +407,7 @@ let Levels =
             }
         ]
     },
-    */
+    
      // Level 15
      {
         Index: 14,
@@ -421,11 +421,11 @@ let Levels =
         [
             {
                 Type: "Cardboard",
-                Amount: 5
+                Amount: 8
             },
             {
                 Type: "Wooden",
-                Amount: 5
+                Amount: 8
             },
             {
                 Type: "Metal",
