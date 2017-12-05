@@ -11,6 +11,7 @@ import { CollisionManager } from "./CollisionManager";
 import { Environment } from "./SceneEnvironment";
 import { Character } from "./Character";
 import { Truck } from "./Truck";
+import { SoundMaster } from "./SoundMaster";
 
 class SceneManager
 {
@@ -34,6 +35,7 @@ class SceneManager
         this._Renderer.OnRender.push(this._BoxManager.Prepare.bind(this._BoxManager));
         this._Renderer.OnRender.push(this._CollisionManager.Run.bind(this._CollisionManager));
         this._Renderer.OnRender.push(this._BoxManager.Update.bind(this._BoxManager));
+        let SM = new SoundMaster();
     }
     public Reset() : void
     {
@@ -53,16 +55,19 @@ class SceneManager
         { 
             this._Char.SetAction("Moonwalk");
             this._BoxManager.SetMove(-0.1); 
+            if(SoundMaster.Single) SoundMaster.Single.Play("Walk");
         } 
         else if(this._Keyboard.Right) 
         { 
             this._Char.SetAction("Walk");
-            this._BoxManager.SetMove(0.1); 
+            this._BoxManager.SetMove(0.1);
+            if(SoundMaster.Single) SoundMaster.Single.Play("Walk");
         }
         else
         {
             this._Char.SetAction("Idle");
             this._BoxManager.SetMove(0);
+            if(SoundMaster.Single) SoundMaster.Single.Stop("Walk");
         }
         if(this._Keyboard.Reset) 
         { 
