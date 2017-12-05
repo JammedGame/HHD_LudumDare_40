@@ -9,6 +9,7 @@ import { Messages } from "./../UI/Messages";
 import { BoxFactory } from "./BoxFactory";
 import { BoxTypeDisplay } from "./../UI/BoxTypeDisplay";
 import { CollisionManager } from "./../CollisionManager";
+import { SoundMaster } from "./../SoundMaster";
 
 class BoxManager
 {
@@ -164,6 +165,8 @@ class BoxManager
             if(this._Velocity < 0 && this._BaseBox.Position.x <= -100) this._Velocity = 0;
             this._BaseBox.SetVelocity(this._Velocity);
             this._Character.Move({X:this._Velocity});
+            if(Math.abs(this._Scene.position.x) < 1000) SoundMaster.Single.Volume("Crane", 1.0 - Math.abs(this._Scene.position.x) / 1000);
+            else SoundMaster.Single.Volume("Crane", 0);
         }
     }
     private UpdateCarriedBoxes() : void

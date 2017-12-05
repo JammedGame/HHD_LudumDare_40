@@ -7,6 +7,8 @@ class SoundMaster
     public static Single:SoundMaster;
     private _Music:any;
     private _Walk:any;
+    private _Crane:any;
+    private _Truck:any;
     private _CardboardBoxFall:any;
     private _WoodenBoxFall:any;
     private _MetalBoxFall:any;
@@ -31,6 +33,24 @@ class SoundMaster
                 autoplay:false,
                 loop:true,
                 volume:1.5,
+            }
+        )
+
+        this._Crane = new Howler.Howl(
+            {
+                src:"./build/resources/crane.wav",
+                autoplay:false,
+                loop:true,
+                volume:0.5,
+            }
+        )
+
+        this._Truck = new Howler.Howl(
+            {
+                src:"./build/resources/truck.wav",
+                autoplay:false,
+                loop:true,
+                volume:0.5,
             }
         )
 
@@ -63,6 +83,9 @@ class SoundMaster
 
         this._Music.play();
 
+        this._Crane.play();
+        this._Truck.play();
+
         SoundMaster.Single = this;
     }
     public Play(Track:string)
@@ -89,6 +112,17 @@ class SoundMaster
         if(Track == "Walk")
         {
             if(this._Walk.playing())this._Walk.stop();
+        }
+    }
+    public Volume(Track:string, Value:number)
+    {
+        if(Track == "Crane")
+        {
+            this._Crane.volume(Value * 0.5);
+        }
+        else if(Track == "Truck")
+        {
+            this._Truck.volume(Value * 0.5);
         }
     }
 }

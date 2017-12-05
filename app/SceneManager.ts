@@ -47,6 +47,8 @@ class SceneManager
     {
         this._Renderer.SetMixer(this._Char.Mixer);
         this._LevelManager.Update();
+        if(Math.abs(-this._Renderer.Scene.position.x - 3100) < 1000) SoundMaster.Single.Volume("Truck", 1.0 - Math.abs(-this._Renderer.Scene.position.x - 3100) / 1000);
+        else SoundMaster.Single.Volume("Truck", 0);
         if(this._Keyboard.Space) 
         { 
             this._BoxManager.ReleaseBox(); 
